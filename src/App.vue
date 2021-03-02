@@ -1,30 +1,42 @@
+
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+     <section class="hero is-warning is-bold is-fullheight">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">{{msg}}</h1>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <div class="container">
+          <div class="content has-text-centered pb-5">
+            <p>
+              <strong>Atelier Mars 2021</strong>
+            </p>
+            <p>
+              Découvrez comment styliser simplement votre ToDo list avec 
+              <a class="has-text-primary" href="https://bulma.io/">
+                <strong>Bulma</strong>
+              </a> 
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-  <router-view/>
 </template>
 
+<script>
+export default {
+  name: 'app',
+  data () {
+    return {
+      msg: 'Hello, et bienvenue sur la demo TodoList en Vue.js!'
+    }
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
