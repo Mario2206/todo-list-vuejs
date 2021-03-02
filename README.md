@@ -111,7 +111,9 @@ Voilà notre TodoList est prête et fonctionnel!
 
 
 ## Pour aller plus loin:
-- Gestion du singulier/pluriel sur le compteur de tâches .
-- Rajouter une animation lors de l'ajout oû suppression de données.
+- Gestion du singulier/pluriel sur le compteur de tâches.
+- Permettre de supprimer toutes les tâches.
+- Permettre de supprimer toutes les tâches terminées.
 - Permettre de permuter les éléments de la liste.
+- Rajouter une animation lors de l'ajout oû suppression de données.
 
