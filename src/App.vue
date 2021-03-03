@@ -4,16 +4,17 @@
      <section class="hero is-warning is-bold is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title">{{msg}}</h1>
+          <todo-card title="VueJs Tutorial ToDo List">
+            <template v-slot:todo-form>
+              <new-todo></new-todo>
+            </template>
+          </todo-card>
         </div>
       </div>
 
       <div class="hero-foot">
         <div class="container">
           <div class="content has-text-centered pb-5">
-            <p>
-              <strong>Atelier Mars 2021</strong>
-            </p>
             <p>
               Découvrez comment styliser simplement votre ToDo list avec 
               <a class="has-text-primary" href="https://bulma.io/">
@@ -28,13 +29,21 @@
 </template>
 
 <script>
+import TodoCard from "./components/TodoCard"
+import NewTodo from "./components/NewTodo"
+
+
 export default {
   name: 'app',
-  data () {
+  components : {
+    TodoCard,
+    NewTodo
+  },
+  data: function() {
     return {
-      msg: 'Hello, et bienvenue sur la demo TodoList en Vue.js!'
-    }
-  }
+        msg : "Hello"
+    };
+}
 }
 </script>
 
