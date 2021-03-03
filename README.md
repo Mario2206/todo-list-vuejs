@@ -50,7 +50,7 @@ NewTodo permet de créer une nouvelle tâche. Il est composé d'un input pour re
   - Récupérer l'évènement d'ajout d'une nouvelle tâche (newTask) au niveau du composant parent TodoCard grâce à la directive **v-on**.
   - Écouter l'évènement personnalisé newTask du composant Fille et le gérer via une fonction **addTask**.
   - Au sein de la fonction **addTask**: 
-    - Créer notre nouvelle tâche et lui attribuer un statut (permettant de vérifier si la tâche est finie ou non) qui est au statut **unckecked** initialement. 
+    - Créer notre nouvelle tâche et lui attribuer un statut (permettant de vérifier si la tâche est finie ou non) qui est au statut **unckecked** (il s'agit d'un booléen) initialement. 
     - Ajouter la nouvelle tâche renseignée par l'utilisateur au tableau des tâches défini au **4.** .
   
 
