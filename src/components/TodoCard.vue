@@ -10,11 +10,16 @@
             </p>
         </header>
         <div class="card--form">
-            <new-todo @new-todo-task="saveTask"></new-todo>
+            <new-todo @new-todo-task="saveTask" :levels="todoLevels"></new-todo>
         </div>
-        <div>
+        <div class="card--main">
             <h2>TodoList</h2>
-            <todo-list v-bind:tasks="tasks" @task-check="checkTask" @delete-task="deleteTask" @delete-all-tasks="deleteAllTasks" @task-permutation="permutateTasks"></todo-list>
+            <todo-list 
+            v-bind:tasks="tasks" 
+            @task-check="checkTask" 
+            @delete-task="deleteTask" 
+            @delete-all-tasks="deleteAllTasks" 
+            @task-permutation="permutateTasks"></todo-list>
         </div>
     </article>
 </template>
@@ -30,7 +35,7 @@ export default {
     ],
     methods: {
         saveTask(e) {
-            const newTask = {value: e.todoTask, checked: false}
+            const newTask = {value: e.todoTask, checked: false, level: e.todoLevel}
             this.tasks = [...this.tasks, newTask]
         },
         checkTask(e) {
@@ -52,6 +57,7 @@ export default {
            
             if(selectedTasksIndex.length !== 2) {
                 alert("La permutation ne peut se faire qu'entre deux éléments de la liste")
+                return 
             }
 
             this.tasks[selectedTasksIndex[0].index] = selectedTasksIndex[1].task
@@ -61,7 +67,21 @@ export default {
     },
     data() {
         return {
-            tasks: []
+            tasks: [],
+            todoLevels: [
+                {
+                    value: "Faible",
+                    color: "grey"
+                },
+                {
+                    value: "Normal",
+                    color: "blue"
+                },
+                {
+                    value: "Important",
+                    color: "red"
+                }
+            ]
         }
     },
     computed: {
@@ -84,6 +104,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding: 10px;
+        box-shadow: 0 10px 6px rgba(0, 0, 0, .1);
     }
 
     .card--title {
@@ -92,5 +113,8 @@ export default {
 
     .card--form {
         padding: 20px 10px  ;
+    }
+    .card--main {
+        padding: 30px 0;
     }
 </style>

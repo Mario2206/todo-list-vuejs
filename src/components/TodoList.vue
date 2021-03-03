@@ -1,17 +1,21 @@
 <template>
     <div class="list">
          <div class="list--header">
-            <button @click="permutate">Permuter</button>
-            <button @click="deleteAllTasks()">Tout supprimer</button>
-            <button @click="deleteAllTasks(true)">Supprimer les terminés</button>
+            <button @click="permutate" class="list--btn">Permuter</button>
+            <div>
+                <button @click="deleteAllTasks()" class="list--btn list--btn-danger">Tout supprimer</button>
+                <button @click="deleteAllTasks(true)" class="list--btn list--btn-danger">Supprimer les terminés</button>
+            </div>
+
         </div>
-        
-        <ul>
+        <strong v-if="tasks.length === 0">Aucun élément disponible</strong>
+        <ul v-if="tasks.length > 0">
             <transition-group name="fade">
                 <li class="list--item " v-for="(task, index) in tasks" v-bind:key="index">
                     <div class="list--name-wrapper">
                         <input type="checkbox" v-bind:checked="task.checked" @change.prevent="checkTodo(index)">
                         <p :class="{'list--checked' : task.checked}">{{ task.value }}</p>
+                        <span class="list--level" :style="{backgroundColor: task.level.color}">{{task.level.value}}</span>
                     </div>
                     <button @click="deleteTask(index)">Delete</button>
                 </li>
@@ -49,7 +53,7 @@ export default {
     .list--header {
         padding: 20px 10px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
     }
     .list--header button {
         margin: 0 10px;
@@ -68,6 +72,25 @@ export default {
     }
     .list--checked {
         text-decoration: line-through; 
+    }
+    .list--btn {
+        background-color: #3384FF;
+        padding: 5px 10px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .list--btn-danger {
+        background-color: #F8614A;
+    }
+    .list--level {
+        color: white;
+        margin-left: 10px;
+        padding: 5px;
+        font-size: .7em;
+        border-radius: 8px;
     }
 
     /* ANIM */
