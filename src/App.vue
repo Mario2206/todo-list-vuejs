@@ -4,11 +4,7 @@
      <section class="hero is-warning is-bold is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <todo-card title="VueJs Tutorial ToDo List">
-            <template v-slot:todo-form>
-              <new-todo></new-todo>
-            </template>
-          </todo-card>
+          <todo-card title="VueJs Tutorial ToDo List"></todo-card>
         </div>
       </div>
 
@@ -30,14 +26,12 @@
 
 <script>
 import TodoCard from "./components/TodoCard"
-import NewTodo from "./components/NewTodo"
 
 
 export default {
   name: 'app',
   components : {
     TodoCard,
-    NewTodo
   },
   data: function() {
     return {
