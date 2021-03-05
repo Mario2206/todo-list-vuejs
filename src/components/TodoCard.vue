@@ -26,6 +26,7 @@
 <script>
 import NewTodo from './NewTodo.vue';
 import TodoList from './TodoList'
+import {mapState} from 'vuex'
 
 export default {
   components: { NewTodo, TodoList },
@@ -35,39 +36,23 @@ export default {
     ],
     methods: {
         saveTask(e) {
-            const newTask = {value: e.todoTask, checked: false, level: e.todoLevel}
-            this.tasks = [...this.tasks, newTask]
+            this.$store.dispatch('saveTask', e)
         },
         checkTask(e) {
-            const { index } = e
-            this.tasks[index].checked = !this.tasks[index].checked
+            this.$store.dispatch("checkTask", e)
         },
         deleteTask(e) {
-            const { index } = e
-            return this.tasks =  this.tasks.filter((item, i) => i !== index)  
+            this.$store.dispatch("deleteTasks", e)
         },
         deleteAllTasks({onlySelected}) {
-            return this.tasks = onlySelected ? this.tasks.filter((item) => !item.checked ) : []
+            this.$store.dispatch("deleteTasks", {onlySelected})
         }, 
         permutateTasks() {
-            
-            const selectedTasksIndex = this.tasks
-            .map((task, index) =>( {task, index}))
-            .filter(task => task.task.checked)
-           
-            if(selectedTasksIndex.length !== 2) {
-                alert("La permutation ne peut se faire qu'entre deux éléments de la liste")
-                return 
-            }
-
-            this.tasks[selectedTasksIndex[0].index] = selectedTasksIndex[1].task
-            this.tasks[selectedTasksIndex[1].index] = selectedTasksIndex[0].task
-
+            this.$store.dispatch("permutateTasks")
         }
     },
     data() {
         return {
-            tasks: [],
             todoLevels: [
                 {
                     value: "Faible",
@@ -93,7 +78,8 @@ export default {
         },
         taskLength() {
             return this.tasks && Array.isArray(this.tasks) ? this.tasks.length : 0
-        }
+        },
+        ...mapState(["tasks"])
     }
 }
 </script>
